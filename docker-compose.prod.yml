@@ -21,12 +21,12 @@ services:
     depends_on:
       - postgres
     expose:
-      - 3001
+      - 5000
     labels:	
       - "traefik.enable=true"
       - "traefik.http.routers.formula-api.rule=Host(`formula.nooridev.com`) && PathPrefix(`/api`)"
       - "traefik.http.routers.formula-api.entrypoints=web"
-      - "traefik.http.services.formula-api.loadbalancer.server.port=3001"
+      - "traefik.http.services.formula-api.loadbalancer.server.port=5000"
   postgres:
     image: postgres:16
     container_name: postgres
