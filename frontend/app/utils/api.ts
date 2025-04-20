@@ -2,7 +2,7 @@ import axios, { AxiosResponse } from "axios";
 import 'primereact/resources/themes/lara-light-indigo/theme.css';
 import 'primereact/resources/primereact.min.css';
 
-const API_URL: string = process.env.API_URL || "http://localhost:5000/api";
+const API_URL: string = "https://formula.nooridev.com/api";
 
 function getLocalStorageToken(): string | null {
     return localStorage.getItem("token");
