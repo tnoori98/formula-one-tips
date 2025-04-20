@@ -1,0 +1,17 @@
+version: '3.2'
+
+services:
+  formula-web:
+    build:
+      context: .
+      dockerfile: ./docker/frontend/Dockerfile
+    restart: "unless-stopped"
+    ports:
+      - 3000:3000
+  formula-api:
+    build:
+      context: .
+      dockerfile: ./docker/api/Dockerfile
+    restart: "unless-stopped"
+    ports:
+      - 3001:300
