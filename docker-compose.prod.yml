@@ -17,9 +17,9 @@ services:
       dockerfile: ./docker/api/Dockerfile
     restart: "unless-stopped"
     links:
-      - db
+      - postgres
     depends_on:
-      - db
+      - postgres
     expose:
       - 3001
     labels:	
