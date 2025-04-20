@@ -16,6 +16,10 @@ services:
       context: .
       dockerfile: ./docker/api/Dockerfile
     restart: "unless-stopped"
+    links:
+      - db
+    depends_on:
+      - db
     expose:
       - 3001
     labels:	
@@ -35,3 +39,9 @@ services:
       - "5432:5432"
     volumes:
       - ./docker/postgres/data:/var/lib/postgresql/data
+
+networks:
+  default:
+    external:
+      name:
+        traefik_default
