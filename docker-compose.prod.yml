@@ -8,6 +8,10 @@ services:
     restart: "unless-stopped"
     ports:
       - 3000:3000
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.whoami.rule=Host(`formula.nooridev.com`)"
+      - "traefik.http.routers.whoami.entrypoints=web"
   formula-api:
     build:
       context: .
@@ -15,3 +19,7 @@ services:
     restart: "unless-stopped"
     ports:
       - 3001:300
+    labels:	
+      - "traefik.enable=true"
+      - "traefik.http.routers.whoami.rule=Host(`formula.nooridev.com`) && PathPrefix(`/api`)"
+      - "traefik.http.routers.whoami.entrypoints=web"
