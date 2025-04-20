@@ -68,11 +68,11 @@ const Admin: React.FC = () => {
 
   const loadEntries = async () => {
     try {
-      setUsers(await getUsers());
-      setDrivers(await getDrivers());
-      setTeams(await getTeams());
-      setEvents(await getEvents());
-      setTipOptions(await getTipOptions());
+      setUsers(await getUsers() as EntityInput[]);
+      setDrivers(await getDrivers() as EntityInput[]);
+      setTeams(await getTeams() as EntityInput[]);
+      setEvents(await getEvents() as EntityInput[]);
+      setTipOptions(await getTipOptions() as EntityInput[]);
     } catch (err) {
       toast.current?.show({ severity: "error", summary: "Fehler", detail: "Laden fehlgeschlagen" });
     }
