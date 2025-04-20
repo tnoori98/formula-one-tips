@@ -4,23 +4,25 @@ services:
       context: .
       dockerfile: ./docker/frontend/Dockerfile
     restart: "unless-stopped"
-    ports:
-      - 3000:3000
+    expose:
+      - 3000
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.whoami.rule=Host(`formula.nooridev.com`)"
-      - "traefik.http.routers.whoami.entrypoints=web"
+      - "traefik.http.routers.formula-web.rule=Host(`formula.nooridev.com`)"
+      - "traefik.http.routers.formula-web.entrypoints=web"
+      - "traefik.http.services.formula-web.loadbalancer.server.port=3000"
   formula-api:
     build:
       context: .
       dockerfile: ./docker/api/Dockerfile
     restart: "unless-stopped"
-    ports:
-      - 3001:300
+    expose:
+      - 3001
     labels:	
       - "traefik.enable=true"
-      - "traefik.http.routers.whoami.rule=Host(`formula.nooridev.com`) && PathPrefix(`/api`)"
-      - "traefik.http.routers.whoami.entrypoints=web"
+      - "traefik.http.routers.formula-api.rule=Host(`formula.nooridev.com`) && PathPrefix(`/api`)"
+      - "traefik.http.routers.formula-api.entrypoints=web"
+      - "traefik.http.services.formula-api.loadbalancer.server.port=3001"
   postgres:
     image: postgres:16
     container_name: postgres
